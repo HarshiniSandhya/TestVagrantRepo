@@ -26,26 +26,57 @@ when s1 song played----->S4,S2,S1.
 3. In LeastRecentlyUsed class i have upcasted Linkedlist class for its interface Deque which takes key as parameter.
 4. Upcasted Hashmap class for Map interface which takes "key-value" as parameter.
 5. created 2 methods inside it for gettingElementFromCache() and PutElementToCache()
-6. initialized capacity of cache to 3.
+6. initialized capacity of cache to 3. 
 7. For gettingElementFromCache() which takes key as arguement, i will firstly check
-   7.1----->If cache has that particular key or not using--map.containsKey(key) and if found then i remove that key from LinkedList and add it near head of LinkedList.
-  7.2----> If key not found in cache then i return "song not exsist".
+   
+     7.1----->If cache has that particular key or not using--map.containsKey(key) and if found then i remove that key from LinkedList and 
+     add it near head of LinkedList.
+   
+  if(map.containsKey(key))
+  
+      {
+	    	HashMapCache current=map.get(key);
+	        q.remove(key); 
+            q.addFirst(key);
+     
+		 System.out.print("song played is"+" "+key+" "+"by");
+		 return current.value;
+    	 }
+
+  7.2----> If key not found in cache then i will return "song not exsist".
    
 8. For PuttingElementToCache() which takes "key-value" as arguement, i will firstly check
 
-   8.1------->If cache has that particular key or not using --map.containsKey(key) and if found then i remove that key from LinkedList using q.remove(current.key)  OR
+   8.1------->If cache has that particular key or not using --map.containsKey(key) and if found then i remove that key from LinkedList using q.remove(current.key)
+
+if(map.containsKey(key))
+	{
+		HashMapCache current=map.get(key);
+		q.remove(current.key);
+	}
    
-   8.2-------->If the size of linkedlist= cache size(capacity) then the LRU key is removed from LinkedList and from HashMap using temp=q.removelast() and map.remove(temp).This operation
-                is for making space for newItem.
+   8.2-------->If the size of linkedlist= cache size(capacity) then the LRU key is removed from LinkedList and from HashMap using temp=q.removelast() and map.remove(temp).This operation is for making space for newItem.
+   
+                if(q.size()==capacity)
+		{
+			String temp=q.removeLast();
+			map.remove(temp);	
+		}
    
    8.3-------->If the key is not found in cache and the capacity also not full then newItem is added into cache which is of the type HashMapCache.
-                           HashMapCache newItem=new HashMapCache(key,value).and it is added next to head of LinkedList i.e, q.addFirst(newItem.key).Then added to cache(HashMap) also using
-                       map.put(key,newItem).
-9. Now all the required methods are called in main() class by using class reference and by passing the arguements.
+   HashMapCache newItem=new HashMapCache(key,value).and it is added next to head of LinkedList i.e, q.addFirst(newItem.key).Then added to cache(HashMap) also using map.put(key,newItem)
+   
+                       HashMapCache newItem=new HashMapCache(key, value);
+                     	q.addFirst(newItem.key);
+	                     map.put(key,newItem);
+9. Now all the required methods are called in main() class by using LeastRecentlyUsed class reference and by passing the arguements.
 
     # Author
    Harshini BS
+   
    Harshinibs04@gmail.com
+   
+                           ****THANKS FOR THE OPPURTUNITY****
    
     
    
